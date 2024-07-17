@@ -1,0 +1,37 @@
+/* we define css variables on some element, here we are declaring on root element which is the highest level of elemests */
+:root {
+    --base : rgb(211, 211, 153);
+    --spacing : 10px;
+    --blur : 0px;
+}
+
+/* to use these variables use var(--variable name) */
+
+img{
+    padding: var(--spacing);
+    background: var(--base);
+    filter: blur(var(--blur));
+    width:auto;
+    height: 500px;
+}
+
+.hl{
+    color: var(--base);
+}
+
+body {
+    text-align: center;
+    background: #193549;
+    color: white;
+    font-family: 'helvetica neue', sans-serif;
+    font-weight: 100;
+    font-size: 50px;
+  }
+
+  .controls {
+    margin-bottom: 50px;
+  }
+
+  input {
+    width: 100px;
+  }
