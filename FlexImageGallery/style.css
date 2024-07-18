@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.panels{
+    height: 100vh;
+    display: flex;
+    /* thid flex is used for panles class so elements inside this class div will be arranged in flex */
+    overflow: hidden;
+}
+
+.panel{
+    background: #6B0F9C;
+    box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+    color: white;
+    align-items: center;
+    text-align: center;
+    /* border: 2px solid green; */
+    font-size: 20px;
+    background-size: cover;
+    background-position: center;
+    flex: 1;  /* all elements will divide the remaining space evenly among each other */
+    display: flex; 
+    /* we are using flex on panel class so flex will be implemented on elemnts inside this div i.e P tags
+    so p tags will be arranged in a row and we arrange them in column and put its content in center */
+    flex-direction: column;
+    justify-content: center;
+    transition: font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11), 
+                flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11), background 0.2s;
+}
+
+.panel1 { background-image:url(https://images.unsplash.com/photo-1721222177592-db9f98c5034a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyNHx8fGVufDB8fHx8fA%3D%3D); }
+    .panel2 { background-image:url(https://plus.unsplash.com/premium_photo-1720706435477-bb1d79c2224c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D); }
+    .panel3 { background-image:url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d); }
+    .panel4 { background-image:url(https://images.unsplash.com/photo-1721086130975-83605296fdbb?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); }
+    .panel5 { background-image:url(https://plus.unsplash.com/premium_photo-1720707581102-72a84b1ae178?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzMnx8fGVufDB8fHx8fA%3D%3D); }
+
+
+/* flex items of panel i.e p tags */
+.panel > * {
+        margin: 0;
+        width: 100%;
+        transition: transform 0.5s;
+        /* border: 2px solid red; */
+        flex: 1 0 auto;
+        /* this flex will arrange all p tags evenly in panel */
+        display: flex;
+        /* this will arrange all items inside p tag (nothing is inside except a text) */
+        justify-content: center;
+        align-items: center;
+}
+
+/* * means all elements of panel class and then first item from these elements */
+.panel > *:first-child{
+    transform: translateY(-100%);
+}
+.panel.open-active> *:first-child{
+    transform: translateY(0%);
+}
+.panel > *:last-child{
+    transform: translateY(100%);
+}
+.panel.open-active> *:last-child{
+    transform: translateY(0%);
+}
+
+.panel.open{
+    flex: 5;
+    /* this will take 5 times more space than other elements */
+    font-size: 40px;
+}
+
+
+.panel p:nth-child(2) {
+    font-size: 4em;
+}
+
+
+.panel p {
+    text-transform: uppercase;
+    font-family: 'Amatic SC', cursive;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+    font-size: 2em;
+}
+
+@media only screen and (max-width: 600px) {
+    .panel p {
+      font-size: 1em;
+}
