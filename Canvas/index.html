@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun with Html canvas</title>
+</head>
+<body>
+    <canvas id="draw" height="800" width="800"></canvas>
+
+    <script>
+        const cnvs = document.querySelector("#draw");
+        // console.log(cnvs);
+
+        console.log(cnvs.getContext('2d'));
+        const ctxt = cnvs.getContext("2d");
+
+        cnvs.width = window.innerWidth;
+        cnvs.height = window.innerHeight;
+
+        ctxt.lineCap = 'round';
+        ctxt.strokeStyle = '#BADA55';
+        ctxt.lineJoin = 'round';
+        ctxt.lineWidth = 10;
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let hue = 0;
+        let direction = true;
+
+
+        function draw(e){
+            if(!isDrawing) return;
+
+            console.log(e);
+
+            ctxt.strokeStyle = `hsl(${hue}, 100%, 50%)`; // to create rainbow like pattern h:hue, s:saturatin, l:light
+            ctxt.beginPath();
+
+            //start from 
+            ctxt.moveTo(lastX, lastY);
+            //go to
+            ctxt.lineTo(e.offsetX, e.offsetY);
+            ctxt.stroke();
+
+            
+            [lastX, lastY] = [e.offsetX, e.offsetY]; // ES6 spread operator
+            // lastX = e.offsetX; 
+            // lastY = e.offsetY;
+
+            hue++;
+            if(hue >= 360){
+                hue = 0;
+            }
+
+            if(ctxt.lineWidth >= 50 || ctxt.lineWidth<=1){
+                direction = !direction;
+            }
+
+            if(direction){
+                ctxt.lineWidth++;
+            }else{
+                ctxt.lineWidth--;
+            }
+
+        }
+
+
+        cnvs.addEventListener('mousedown', (e)=> {    
+            isDrawing = true;
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        
+        });
+
+        cnvs.addEventListener('mousemove', draw);
+        
+        cnvs.addEventListener('mouseup', ()=> isDrawing = false);
+        cnvs.addEventListener('mouseout', ()=> isDrawing = false);
+        
+
+    </script>
+
+    <style>
+        *{
+            margin: 0;
+        }
+    </style>
+
+</body>
+</html>
